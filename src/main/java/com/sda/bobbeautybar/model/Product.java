@@ -2,20 +2,20 @@ package com.sda.bobbeautybar.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
-@Table
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long idProduct;
     private String productName;
     private String productCode;
     private int measureUnit;
     private double unitPrice;
+    @OneToMany(mappedBy="product")
+    List<Service_product> serviceProducts=new ArrayList<>();
 }

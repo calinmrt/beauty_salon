@@ -2,21 +2,23 @@ package com.sda.bobbeautybar.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table
 public class Reservation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long idReservation;
     private LocalDateTime dateTime;
-    private long idWorker;
-    private long idService;
-    private long idClient;
+    @ManyToOne
+    @JoinColumn(name = "idWorker", nullable = false)
+    private User worker;
+    @ManyToOne
+    @JoinColumn(name = "idClient", nullable = false)
+    private User client;
+    @ManyToOne
+    @JoinColumn(name = "idService", nullable = false)
+    private Service service;
 }

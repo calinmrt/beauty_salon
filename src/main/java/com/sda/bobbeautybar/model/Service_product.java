@@ -2,19 +2,19 @@ package com.sda.bobbeautybar.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
-@Table
 public class Service_product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private int consumesUnits;
-    private long idService;
-    private long idProduct;
+    @ManyToOne
+    @JoinColumn(name="idService", nullable = false)
+    private Service service;
+    @ManyToOne
+    @JoinColumn(name="idProduct", nullable = false)
+    private Product product;
 }
