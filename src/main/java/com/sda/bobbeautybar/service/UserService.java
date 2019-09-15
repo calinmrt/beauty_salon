@@ -1,5 +1,6 @@
-package com.sda.bobbeautybar.model;
+package com.sda.bobbeautybar.service;
 
+import com.sda.bobbeautybar.model.User;
 import com.sda.bobbeautybar.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +24,5 @@ public class UserService {
     public User save(User user) {
         return userRepo.save(user);
     }
-
-    public void delete(Long id) {
-        userRepo.deleteById(id);
-
-
-    }
-
 
 }
