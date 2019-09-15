@@ -12,6 +12,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idReservation;
     private LocalDateTime dateTime;
+    private boolean confirmed;
     @ManyToOne
     @JoinColumn(name = "idWorker", nullable = false)
     private User worker;

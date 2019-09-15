@@ -19,9 +19,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Service> services = new ArrayList<>();
     @OneToMany(mappedBy = "worker")
-    List<Service> workerReservation = new ArrayList<>();
+    List<Reservation> workerReservation = new ArrayList<>();
     @OneToMany(mappedBy = "client")
-    List<Service> clientReservation = new ArrayList<>();
+    List<Reservation> clientReservation = new ArrayList<>();
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
