@@ -14,7 +14,7 @@ public class Product {
     private long idProduct;
     private String productName;
     private String productCode;
-    private int measureUnit;
+    private float measureUnit;
     private double unitPrice;
     @OneToMany(mappedBy="product")
     List<Service_product> serviceProducts=new ArrayList<>();
