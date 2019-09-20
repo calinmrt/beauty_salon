@@ -2,9 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylessheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <title>products</title>
 </head>
 <body>
@@ -23,11 +23,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="product :${data}">
-                    <td th:text="${product.getIdProduct()}"></td>
-                    <td th:text="${product.getProductName()}"></td>
-                    <td th:text="${product.getProductCode()}"></td>
-                    <td th:text="${product.getMeasureUnit()}"></td>
-                    <td th:text="${product.getUnitPrice()}"></td>
+                    <td th:text="${product.idProduct}"></td>
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.productCode}"></td>
+                    <td th:text="${product.measureUnit}"></td>
+                    <td th:text="${product.unitPrice}"></td>
                 </tr>
                 </tbody>
             </table>

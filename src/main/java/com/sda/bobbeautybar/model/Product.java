@@ -18,4 +18,16 @@ public class Product {
     private double unitPrice;
     @OneToMany(mappedBy="product")
     List<Service_product> serviceProducts=new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "idProduct=" + idProduct +
+                ", productName='" + productName + '\'' +
+                ", productCode='" + productCode + '\'' +
+                ", measureUnit=" + measureUnit +
+                ", unitPrice=" + unitPrice +
+                ", serviceProducts=" + serviceProducts +
+                '}';
+    }
 }
