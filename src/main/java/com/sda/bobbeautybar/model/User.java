@@ -10,8 +10,8 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idUser;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idUser;
     private String email;
     private String password;
     private String phone;

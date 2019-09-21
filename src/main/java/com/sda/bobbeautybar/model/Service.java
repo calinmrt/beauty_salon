@@ -10,8 +10,8 @@ import java.util.List;
 @Entity
 public class Service {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idService;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idService;
     private String serviceName;
     private double servicePrice;
     private int duration;

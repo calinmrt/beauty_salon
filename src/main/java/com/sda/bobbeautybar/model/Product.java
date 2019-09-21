@@ -10,8 +10,8 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idProduct;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idProduct;
     private String productName;
     private String productCode;
     private int quantity;

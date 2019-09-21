@@ -10,6 +10,9 @@
     <title>products</title>
 </head>
 <body>
+<br/>
+<br/>
+<br/>
 <div class="container">
     <div class="card">
         <div class="card-block">
@@ -17,10 +20,11 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nume Produs</th>
-                    <th>cod bare</th>
-                    <th>unitate masura</th>
-                    <th>pret unitate RON</th>
+                    <th>Product Name</th>
+                    <th>Bars Code</th>
+                    <th>Quantity</th>
+                    <th>Measure Unit</th>
+                    <th>Unit Price RON</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +35,10 @@
                     <td th:text="${product.quantity}"></td>
                     <td th:text="${product.measureUnit}"></td>
                     <td th:text="${product.unitPrice}"></td>
-                    <td><a class="btn btn-primary eBtn">Edit</a></td>
+                    <td>
+                        <a th:href="@{/products/findOneProduct(id=${product.idProduct})}" class="btn btn-primary eBtn">Edit</a>
+                        <a th:href="@{/products/delete(id=${product.idProduct})}" class="btn btn-danger dBtn">Delete</a>
+                    </td>
 
                 </tr>
                 </tbody>
@@ -39,8 +46,9 @@
         </div>
     </div>
 
+
     <div class="myForm">
-        <form th:action="@{/save}" method="post">
+        <form th:action="@{/products/save}" method="post">
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -54,8 +62,8 @@
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="id" class="col-form-label">ID:</label>
-                                <input type="text" class="form-control" id="id" name="id" value=""/>
+                                <!--                                <label for="id" class="col-form-label">ID:</label>-->
+                                <input type="hidden" class="form-control" id="idProduct" name="idProduct" value=""/>
                             </div>
                             <div class="form-group">
                                 <label for="productName" class="col-form-label">Product Name:</label>
@@ -82,7 +90,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="save" />
+                            <input type="submit" class="btn btn-primary" value="save"/>
                         </div>
                     </div>
                 </div>
@@ -90,7 +98,29 @@
         </form>
     </div>
 
+    <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="alert alert-danger">
+                        Are you sure to delete this product?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="" class="btn btn-danger" id="deleteProduct">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <footer>
     <div class="container">
@@ -102,6 +132,7 @@
                    th:classappend="${currentPage==i}?'active':''"></a>
             </li>
         </ul>
+        <button class="btn btn-success nBtn" style="margin-top: 30px">Add New Product</button>
     </div>
 </footer>
 </body>

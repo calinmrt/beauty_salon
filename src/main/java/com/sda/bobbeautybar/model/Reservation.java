@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Entity
 public class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idReservation;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idReservation;
     private LocalDateTime dateTime;
     private boolean confirmed;
     @ManyToOne

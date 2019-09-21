@@ -5,6 +5,7 @@ import com.sda.bobbeautybar.repository.ProductRepo;
 import com.sda.bobbeautybar.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ProductController {
 
     @GetMapping
     public String show(Model model, @RequestParam(defaultValue = "0") int page) {
-        model.addAttribute("data", productRepo.findAll(PageRequest.of(page, 2)));
+        model.addAttribute("data", productRepo.findAll(PageRequest.of(page, 10, Sort.by("productName").ascending())));
         model.addAttribute("currentPage",page);
         return "products";
     }
@@ -38,7 +39,7 @@ public class ProductController {
 
     @GetMapping("/findOneProduct")
     @ResponseBody
-    public Product findOneProduct(Long id) {
+    public Product findOneProduct(@RequestParam Long id) {
         return productService.getById(id);
     }
 

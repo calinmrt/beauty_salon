@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Entity
 public class Service_product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int consumesUnits;
     @ManyToOne
     @JoinColumn(name="idService", nullable = false)
