@@ -14,6 +14,7 @@ public class Product {
     private long idProduct;
     private String productName;
     private String productCode;
+    private int quantity;
     private float measureUnit;
     private double unitPrice;
     @OneToMany(mappedBy="product")

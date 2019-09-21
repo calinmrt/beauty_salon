@@ -4,6 +4,8 @@
     <meta charset="UTF-8"/>
     <script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{js/main.js}" src="../static/js/main.js"></script>
+
     <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <title>products</title>
 </head>
@@ -26,16 +28,81 @@
                     <td th:text="${product.idProduct}"></td>
                     <td th:text="${product.productName}"></td>
                     <td th:text="${product.productCode}"></td>
+                    <td th:text="${product.quantity}"></td>
                     <td th:text="${product.measureUnit}"></td>
                     <td th:text="${product.unitPrice}"></td>
+                    <td><a class="btn btn-primary eBtn">Edit</a></td>
+
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+    <div class="myForm">
+        <form th:action="@{/save}" method="post">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="id" class="col-form-label">ID:</label>
+                                <input type="text" class="form-control" id="id" name="id" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="productName" class="col-form-label">Product Name:</label>
+                                <input type="text" class="form-control" id="productName" name="productName" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="productCode" class="col-form-label">Product Code:</label>
+                                <input type="text" class="form-control" id="productCode" name="productCode" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity" class="col-form-label">Quantity:</label>
+                                <input type="text" class="form-control" id="quantity" name="quantity" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="measureUnit" class="col-form-label">Measure Unit:</label>
+                                <input type="text" class="form-control" id="measureUnit" name="measureUnit" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="unitPrice" class="col-form-label">Unit Price:</label>
+                                <input type="text" class="form-control" id="unitPrice" name="unitPrice" value=""/>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="save" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </div>
 
-
+<footer>
+    <div class="container">
+        <hr/>
+        <ul class="nav nav-pills">
+            <li class="nav-item"
+                th:each="i:${#numbers.sequence(0,(data.totalPages)-1)}">
+                <a th:href="@{/products(page=${i})}" th:text="${i}" class="nav-link"
+                   th:classappend="${currentPage==i}?'active':''"></a>
+            </li>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>
