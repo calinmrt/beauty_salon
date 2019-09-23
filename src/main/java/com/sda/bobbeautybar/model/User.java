@@ -31,5 +31,14 @@ public class User {
     )
     List<Role> roles=new ArrayList<>();
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
 }

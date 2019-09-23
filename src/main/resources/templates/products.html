@@ -2,18 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" th:src="@{js/main.js}" src="../static/js/main.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}" src="..static/js/main.js"></script>
 
-    <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <title>products</title>
 </head>
 <body>
 <br/>
-<br/>
-<br/>
+
 <div class="container">
+
+    <button class="btn btn-success nBtn">Add New Product</button>
+
+    <form class="form-inline mr-auto" th:action="@{/products/search}" th:method="get">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search Product" aria-label="Search" name="productName">
+        <button class="btn btn-success sBtn" type="submit">Search</button>
+    </form>
+
+
     <div class="card">
         <div class="card-block">
             <table class="table table-hover">
@@ -98,7 +106,8 @@
         </form>
     </div>
 
-    <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+         aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -132,7 +141,8 @@
                    th:classappend="${currentPage==i}?'active':''"></a>
             </li>
         </ul>
-        <button class="btn btn-success nBtn" style="margin-top: 30px">Add New Product</button>
+
+
     </div>
 </footer>
 </body>

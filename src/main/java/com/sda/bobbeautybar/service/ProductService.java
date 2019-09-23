@@ -2,8 +2,11 @@ package com.sda.bobbeautybar.service;
 
 import com.sda.bobbeautybar.model.Product;
 import com.sda.bobbeautybar.repository.ProductRepo;
+import javafx.scene.control.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +16,8 @@ public class ProductService {
     @Autowired
     private ProductRepo productRepo;
 
-    public List<Product> getAll() {
-        return productRepo.findAll();
+    public Page<Product> getAll(Pageable of) {
+        return productRepo.findAll(of);
     }
 
     public Product getById(Long id) {
@@ -29,4 +32,9 @@ public class ProductService {
         productRepo.deleteById(id);
     }
 
+
+    public Page<Product> findByName(Pageable of, String productName) {
+        return productRepo.findByProductNameContaining(productName,of);
+    }
 }
+

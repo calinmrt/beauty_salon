@@ -1,5 +1,6 @@
 package com.sda.bobbeautybar.service;
 
+import com.sda.bobbeautybar.model.Role;
 import com.sda.bobbeautybar.model.User;
 import com.sda.bobbeautybar.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,8 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    public List<User> getAll() {
-        return userRepo.findAll();
+    public List<User> getAll(Role role) {
+        return userRepo.findAllByRoles(role);
     }
 
     public User getById(Long id) {

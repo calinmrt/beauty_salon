@@ -13,15 +13,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/products")
 public class ProductController {
+
     @Autowired
     private ProductService productService;
-    @Autowired
-    private ProductRepo productRepo;
 
     @GetMapping
     public String show(Model model, @RequestParam(defaultValue = "0") int page) {
-        model.addAttribute("data", productRepo.findAll(PageRequest.of(page, 10, Sort.by("productName").ascending())));
-        model.addAttribute("currentPage",page);
+        model.addAttribute("data", productService.getAll(PageRequest.of(page, 10, Sort.by("productName").ascending())));
+        model.addAttribute("currentPage", page);
         return "products";
     }
 
@@ -41,6 +40,13 @@ public class ProductController {
     @ResponseBody
     public Product findOneProduct(@RequestParam Long id) {
         return productService.getById(id);
+    }
+
+    @GetMapping("/search")
+    public String searchByName(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam String productName) {
+        model.addAttribute("data", productService.findByName(PageRequest.of(page, 10, Sort.by("productName").ascending()), productName));
+        model.addAttribute("currentPage", page);
+        return "products";
     }
 
 }
