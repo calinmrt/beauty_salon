@@ -22,4 +22,15 @@ public class Service {
     List<Service_product> serviceProducts = new ArrayList<>();
     @OneToMany(mappedBy = "service")
     List<Reservation> reservations=new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "idService=" + idService +
+                ", serviceName='" + serviceName + '\'' +
+                ", servicePrice=" + servicePrice +
+                ", duration=" + duration +
+                ", user=" + user +
+                '}';
+    }
 }

@@ -1,7 +1,6 @@
 package com.sda.bobbeautybar.controller;
 
 import com.sda.bobbeautybar.model.Product;
-import com.sda.bobbeautybar.repository.ProductRepo;
 import com.sda.bobbeautybar.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

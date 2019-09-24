@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/main.js}" src="..static/js/main.js"></script>
+    <script type="text/javascript" th:src="@{/js/mainProducts.js}" src="..static/js/mainProducts.js"></script>
 
     <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <title>products</title>
@@ -13,14 +13,20 @@
 <br/>
 
 <div class="container">
-
-    <button class="btn btn-success nBtn">Add New Product</button>
-
-    <form class="form-inline mr-auto" th:action="@{/products/search}" th:method="get">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search Product" aria-label="Search" name="productName">
-        <button class="btn btn-success sBtn" type="submit">Search</button>
-    </form>
-
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-success nBtn">Add New Product</button>
+        </div>
+        <div class="col">
+            <div class="float-right">
+                <form class="form-inline mr-auto" th:action="@{/products/search}" th:method="get">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search Product" aria-label="Search"
+                           name="productName"/>
+                    <button class="btn btn-success sBtn" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="card">
         <div class="card-block">
@@ -131,7 +137,7 @@
 </div>
 
 
-<footer>
+<footer class="page-footer">
     <div class="container">
         <hr/>
         <ul class="nav nav-pills">
@@ -141,9 +147,8 @@
                    th:classappend="${currentPage==i}?'active':''"></a>
             </li>
         </ul>
-
-
     </div>
 </footer>
+
 </body>
 </html>

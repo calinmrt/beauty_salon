@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/mainUsers.js}" src="..static/js/mainUsers.js"></script>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <title>users</title>
+</head>
+<body>
+<br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-success nBtn">Add New User</button>
+        </div>
+        <div class="col">
+            <div class="float-right">
+                <form class="form-inline mr-auto" th:action="@{/users/search}" th:method="get">
+                    <input type="hidden" name="idRole" th:value="${currentRole}"/>
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search User" aria-label="Search"
+                           name="userName"/>
+                    <button class="btn btn-success sBtn" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-block">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>e-mail</th>
+                    <!--                    <th>Password</th>-->
+                    <th>Phone</th>
+                    <th>User Name</th>
+                    <th>Role</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user :${data}">
+                    <td th:text="${user.idUser}"></td>
+                    <td th:text="${user.email}"></td>
+                    <!--                    <td th:text="${user.password}"></td>-->
+                    <td th:text="${user.phone}"></td>
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.roles.get(0).name}"></td>
+
+                    <td>
+                        <a th:href="@{/users/findUserById(id=${user.idUser})}" class="btn btn-primary eBtn">Edit</a>
+                        <!--                        todo-->
+                        <!--                        <a th:href="@{/products/delete(id=${product.idProduct})}" class="btn btn-danger dBtn">Delete</a>-->
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="myForm">
+        <form th:action="@{/users/save}" method="post">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit or Create</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+
+                                <input type="hidden" class="form-control" id="idUser" name="idUser" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-form-label">email:</label>
+                                <input type="text" class="form-control" id="email" name="email" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="col-form-label">phone:</label>
+                                <input type="text" class="form-control" id="phone" name="phone" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName" class="col-form-label">userName:</label>
+                                <input type="text" class="form-control" id="userName" name="userName" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">role:</label>
+                                <select class="form-control" th:id="${currentRole}" name="role">
+                                    <option th:each="r : ${allRoles}"
+                                            th:selected="${r.idRole==currentRole}"
+                                            th:value="${r.idRole}"
+                                            th:text="${r.name}"
+                                            th:disabled="${r.idRole==1}"></option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="save"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--    <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"-->
+    <!--         aria-hidden="true">-->
+    <!--        <div class="modal-dialog modal-dialog-scrollable" role="document">-->
+    <!--            <div class="modal-content">-->
+    <!--                <div class="modal-header">-->
+    <!--                    <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>-->
+    <!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+    <!--                        <span aria-hidden="true">&times;</span>-->
+    <!--                    </button>-->
+    <!--                </div>-->
+    <!--                <div class="modal-body">-->
+    <!--                    <p class="alert alert-danger">-->
+    <!--                        Are you sure to delete this product?-->
+    <!--                    </p>-->
+    <!--                </div>-->
+    <!--                <div class="modal-footer">-->
+    <!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+    <!--                    <a href="" class="btn btn-danger" id="deleteProduct">Delete</a>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+</div>
+
+
+<footer class="page-footer">
+    <div class="container">
+        <hr/>
+        <ul class="nav nav-pills">
+            <li class="nav-item"
+                th:each="i:${#numbers.sequence(0,(data.totalPages)-1)}">
+                <a th:href="@{/users(page=${i})}" th:text="${i}" class="nav-link"
+                   th:classappend="${currentPage==i}?'active':''"></a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>

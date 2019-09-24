@@ -1,5 +1,6 @@
 package com.sda.bobbeautybar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,9 +14,9 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRole;
     private String name;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
-    List<User> users=new ArrayList<>();
+    List<User> users = new ArrayList<>();
 
     @Override
     public String toString() {

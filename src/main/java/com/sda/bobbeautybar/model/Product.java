@@ -26,9 +26,9 @@ public class Product {
                 "idProduct=" + idProduct +
                 ", productName='" + productName + '\'' +
                 ", productCode='" + productCode + '\'' +
+                ", quantity=" + quantity +
                 ", measureUnit=" + measureUnit +
                 ", unitPrice=" + unitPrice +
-                ", serviceProducts=" + serviceProducts +
                 '}';
     }
 }

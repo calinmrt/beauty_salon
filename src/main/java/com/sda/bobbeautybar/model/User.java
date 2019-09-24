@@ -1,5 +1,6 @@
 package com.sda.bobbeautybar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,20 +17,23 @@ public class User {
     private String password;
     private String phone;
     private String userName;
+
     @OneToMany(mappedBy = "user")
     List<Service> services = new ArrayList<>();
+
     @OneToMany(mappedBy = "worker")
     List<Reservation> workerReservation = new ArrayList<>();
+
     @OneToMany(mappedBy = "client")
     List<Reservation> clientReservation = new ArrayList<>();
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "user_role",
-            joinColumns = { @JoinColumn(name = "idUser") },
-            inverseJoinColumns = { @JoinColumn(name = "idRole") }
+            joinColumns = {@JoinColumn(name = "idUser")},
+            inverseJoinColumns = {@JoinColumn(name = "idRole")}
     )
-    List<Role> roles=new ArrayList<>();
+    List<Role> roles = new ArrayList<>();
 
     @Override
     public String toString() {
