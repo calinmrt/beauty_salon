@@ -1,5 +1,6 @@
 package com.sda.bobbeautybar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Product {
     private int quantity;
     private float measureUnit;
     private double unitPrice;
+    @JsonIgnore
     @OneToMany(mappedBy="product")
     List<Service_product> serviceProducts=new ArrayList<>();
 

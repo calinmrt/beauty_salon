@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/services")
-public class ServiceController {
+@RequestMapping("/")
+public class MainController {
 
     @Autowired
-    private ServiceService serviceService;
+    ServiceService serviceService;
 
     @GetMapping
-    public String show(Model model){
-        model.addAttribute("data",serviceService.getAll());
-        return "services";
+    public String showMainPage(Model model) {
+        model.addAttribute("serviceList", serviceService.getAll());
+        return "index";
     }
-
 }

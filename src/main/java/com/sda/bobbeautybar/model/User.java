@@ -17,16 +17,16 @@ public class User {
     private String password;
     private String phone;
     private String userName;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<Service> services = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "worker")
     List<Reservation> workerReservation = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     List<Reservation> clientReservation = new ArrayList<>();
-
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "user_role",
