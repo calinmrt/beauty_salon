@@ -27,7 +27,7 @@ public class User {
     @OneToMany(mappedBy = "client")
     List<Reservation> clientReservation = new ArrayList<>();
     @JsonIgnore
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = {@JoinColumn(name = "idUser")},
