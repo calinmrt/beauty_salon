@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/mainProducts.js}" src="/js/mainProducts.js"></script>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <title>products</title>
+</head>
+<body>
+<br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-success nBtn">Add New Product</button>
+        </div>
+        <div class="col">
+            <div class="float-right">
+                <form class="form-inline mr-auto" th:action="@{/products/search}" th:method="get">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search Product" aria-label="Search"
+                           name="productName"/>
+                    <button class="btn btn-success sBtn" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-block">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Bars Code</th>
+                    <th>Quantity</th>
+                    <th>Measure Unit</th>
+                    <th>Unit Price RON</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product :${data}">
+                    <td th:text="${product.idProduct}"></td>
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.productCode}"></td>
+                    <td th:text="${product.quantity}"></td>
+                    <td th:text="${product.measureUnit}"></td>
+                    <td th:text="${product.unitPrice}"></td>
+                    <td>
+                        <a th:href="@{/products/findOneProduct(id=${product.idProduct})}" class="btn btn-primary eBtn">Edit</a>
+                        <a th:href="@{/products/delete(id=${product.idProduct})}" class="btn btn-danger dBtn">Delete</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="myForm">
+        <form th:action="@{/products/save}" method="post">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <!--                                <label for="id" class="col-form-label">ID:</label>-->
+                                <input type="hidden" class="form-control" id="idProduct" name="idProduct" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="productName" class="col-form-label">Product Name:</label>
+                                <input type="text" class="form-control" id="productName" name="productName" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="productCode" class="col-form-label">Product Code:</label>
+                                <input type="text" class="form-control" id="productCode" name="productCode" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity" class="col-form-label">Quantity:</label>
+                                <input type="text" class="form-control" id="quantity" name="quantity" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="measureUnit" class="col-form-label">Measure Unit:</label>
+                                <input type="text" class="form-control" id="measureUnit" name="measureUnit" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="unitPrice" class="col-form-label">Unit Price:</label>
+                                <input type="text" class="form-control" id="unitPrice" name="unitPrice" value=""/>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="save"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Atentie</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="alert alert-danger">
+                        Are you sure to delete this product?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="" class="btn btn-danger" id="deleteProduct">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="page-footer">
+    <div class="container">
+        <hr/>
+        <ul class="nav nav-pills">
+            <li class="nav-item"
+                th:each="i:${#numbers.sequence(0,(data.totalPages)-1)}">
+                <a th:href="@{/products(page=${i})}" th:text="${i}" class="nav-link"
+                   th:classappend="${currentPage==i}?'active':''"></a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>
