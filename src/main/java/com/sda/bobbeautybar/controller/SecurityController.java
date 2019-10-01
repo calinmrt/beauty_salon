@@ -11,25 +11,6 @@ public class SecurityController {
         return "index";
     }
 
-    @GetMapping("/accessDenied") 
-    public String accessDenied()
-    {
-        return "accessDenied";
-    }
 
-    @GetMapping("/unsecured")
-    public String unsecured() {
-        return "unsecured";
-    }
-
-    @GetMapping("/securedAdmin")
-    public String securedAdmin() {
-        return "securedAdmin";
-    }
-
-    @GetMapping("/securedClient")
-    public String securedClient() {
-        return "securedClient";
-    }
 
 }
