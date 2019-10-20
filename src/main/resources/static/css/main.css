@@ -80,7 +80,7 @@ background: #232323 !important;
 	border-radius: 2px;
 	display: inline-block;
 	text-transform: uppercase;
-	border: 1px solid #8a6d3b;
+	/*border: 1px solid #8a6d3b;*/
 }
 .btn:hover, .btn:focus {
 	background-color: #8a6d3b;
