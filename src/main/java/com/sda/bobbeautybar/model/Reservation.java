@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,4 +24,6 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "idService", nullable = false)
     private Service service;
+    @OneToMany(mappedBy="reservation")
+    List<Reservation_products> reservationProducts = new ArrayList<>();
 }

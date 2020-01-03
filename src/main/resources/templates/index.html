@@ -68,7 +68,7 @@
 <!-- header section -->
 <section class="banner" role="banner" id="home">
     <header id="header">
-        <div class="header-content clearfix"><a class="logo" href="index.html">Bob Beauty Bar</a>
+        <div class="header-content clearfix"><a class="logo" href="index.html">Beauty Salon</a>
             <nav class="navigation" role="navigation">
                 <ul class="primary-nav">
                     <li><a href="#home">Home</a></li>
@@ -87,6 +87,11 @@
                     <li>
                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                             <a href="products" th:href="@{/products}">Produse</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <a href="products" th:href="@{/users?idRole=2}">Personal</a>
                         </div>
                     </li>
                     <li>

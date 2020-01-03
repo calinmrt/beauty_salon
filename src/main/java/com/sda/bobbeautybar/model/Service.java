@@ -18,8 +18,7 @@ public class Service {
     @ManyToOne
     @JoinColumn(name ="idUser", nullable = false)
     private User user;
-    @OneToMany(mappedBy="service")
-    List<Service_product> serviceProducts = new ArrayList<>();
+
     @OneToMany(mappedBy = "service")
     List<Reservation> reservations=new ArrayList<>();
 

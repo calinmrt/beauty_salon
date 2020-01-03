@@ -18,7 +18,7 @@ public class ProductController {
 
     @GetMapping
     public String show(Model model, @RequestParam(defaultValue = "0") int page) {
-        model.addAttribute("data", productService.getAll(PageRequest.of(page, 10, Sort.by("productName").ascending())));
+        model.addAttribute("data", productService.getAll(PageRequest.of(page, 5, Sort.by("productName").ascending())));
         model.addAttribute("currentPage", page);
         return "products";
     }

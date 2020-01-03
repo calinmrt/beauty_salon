@@ -20,7 +20,7 @@ public class Product {
     private double unitPrice;
     @JsonIgnore
     @OneToMany(mappedBy="product")
-    List<Service_product> serviceProducts=new ArrayList<>();
+    List<Reservation_products> reservationProducts =new ArrayList<>();
 
     @Override
     public String toString() {
